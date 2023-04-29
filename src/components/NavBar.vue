@@ -1,27 +1,28 @@
+
 <template>
   <header>
-    <router-link class="header-title" to="/">Tongque Blog</router-link>
+    <router-link class="header-title" to="/">Tonque Blog</router-link>
     <div class="header-menu">
       <a @click="" class="header-menu-item">
-        <search-outlined /> 搜索
+       搜索
       </a>
       <router-link to="/" class="header-menu-item">
-        <home-filled /> 首页
+         首页
       </router-link>
-      <router-link to="/archive" class="header-menu-item">
-        <container-filled /> 归档
+      <router-link to="/" class="header-menu-item">
+         Chat
       </router-link>
-      <router-link to="/category" class="header-menu-item">
-        <book-filled /> 分类
+      <router-link to="/" class="header-menu-item">
+         分类
       </router-link>
-      <router-link to="/tag" class="header-menu-item">
-        <tags-filled /> 标签
+      <router-link to="/" class="header-menu-item">
+         视频
       </router-link>
-      <router-link to="/link" class="header-menu-item">
-        <api-filled /> 友链
+      <router-link to="/" class="header-menu-item">
+         友链
       </router-link>
       <a @click="" class="header-menu-item">
-        <setting-filled /> 登录
+         登录
       </a>
     </div>
   </header>

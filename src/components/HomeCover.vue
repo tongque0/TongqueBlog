@@ -8,12 +8,18 @@ const scrollToContent = () => {
 <template>
     <div class="cover">
         <div class="cover-word-container">
-            <h1 class="cover-title">Tongque Blog</h1>
+            <h1 class="cover-title">Tonque Blog</h1>
+            <h2 class="cover-title1">金风玉露一相逢，便胜却，人间无数！</h2>
             <div class="cover-content">
-                <typewriter />
+                
             </div>
         </div>
-        <button style="font-size: 30px" class="arrow-down" @click="scrollToContent" >!</button>
+        <button style="font-size: 30px" class="down" @click="scrollToContent">
+            <svg width="66" height="66">
+                <img src="../assets/images/arrow-down.svg" alt="">
+            </svg>
+        </button>
+
     </div>
 </template>
 
@@ -32,6 +38,31 @@ const scrollToContent = () => {
     justify-content: center;
     align-items: center;
     padding: 10px;
+}
+
+.cover-title {
+    font-size: 48px;
+    color:#eeeeee;
+}
+.cover-title1 {
+    font-size: 18px;
+    color:#eeeeee;
+}
+
+.down {
+    position: absolute;
+    bottom: 20%;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    transition: color 0.2s;
+    background-color: transparent;
+    /* 透明 */
+    animation: bounce 4s infinite;
+}
+
+.down:hover {
+    color: rgba(255, 255, 255, 0.8);
+    transition: color 0.2s;
 }
 </style>
 
