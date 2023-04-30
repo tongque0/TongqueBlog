@@ -1,7 +1,11 @@
 
 <template>
   <header>
-    <router-link class="header-title" to="/">Tonque Blog</router-link>
+    <router-link class="header-title" to="/">
+      
+      <img class="logo-icon" src="../assets/images/纸飞机.png" alt="logo">
+      启梦
+    </router-link>
     <div class="header-menu">
       <a @click="" class="header-menu-item">
        搜索
@@ -9,7 +13,7 @@
       <router-link to="/" class="header-menu-item">
          首页
       </router-link>
-      <router-link to="/" class="header-menu-item">
+      <router-link to="/chat" class="header-menu-item">
          Chat
       </router-link>
       <router-link to="/" class="header-menu-item">
@@ -44,6 +48,18 @@ header {
   --text-color: #eeeeee;
   --text-hover-color: white;
   animation: fadeUpIn 1s;
+}
+.logo-icon {
+    width: 30px;
+    height: 30px;
+    z-index: 10;
+    /* 确保图标位于标题前面 */
+}
+
+.logo-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 .blog-avatar {

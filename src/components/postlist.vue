@@ -17,12 +17,47 @@ defineProps<{
 <template>
     <div class="post-list">
         <div v-for="post in posts" :key="post.id" class="post-item">
+          <img src="http://tongque.xyz/images/1.jpg" alt="">
+          <div class="post-item-text">
             <routerLink :to="{name:'Detail',params:{id:post.id}}">
                 <h3>{{ post.title }}</h3>
             </routerLink>
             <p>{{ post.content.substring(0, 100) + "..." }}</p>
+          </div>
         </div>
     </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.post-list {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.post-item {
+  display: flex;
+  margin-bottom: 20px;
+  background-color: aquamarine;
+  align-items: center;
+}
+
+.post-item img {
+  width: 280px;
+}
+
+.post-item-text {
+  flex: 1;
+  text-align: center;
+}
+
+.post-item-text h3 {
+  margin-bottom: 10px;
+  color: #000000;
+}
+
+.post-item-text p {
+  margin-bottom: 0;
+}
+
+</style>

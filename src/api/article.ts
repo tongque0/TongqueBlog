@@ -31,5 +31,19 @@ const getArticle =(id: string)=>{
 
     return {posts}
 }
-export { getArticles, getArticle };
+
+const addArticle = (title: any, content: any) => {
+    const load = async () => {
+      try {
+        const status: any=await axios.post('http://127.0.0.1:3007/api/getArticle', { title, content });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    load();
+  
+    return status;
+  };
+  
+export { getArticles, getArticle,addArticle };
 

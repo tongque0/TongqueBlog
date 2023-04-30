@@ -7,7 +7,7 @@ import NavFoot from './components/NavFoot.vue'
 <template>
   <NavBar></NavBar>
   <RouterView></RouterView>
-  <NavFoot></NavFoot>
+  <!-- <NavFoot></NavFoot> -->
 </template>
 
 <style scoped>

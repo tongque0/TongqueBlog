@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import HomeCover from "../components/HomeCover.vue"
 import PostList from "../components/postlist.vue"
+import NavFoot from "@/components/NavFoot.vue";
 // import getArticles from "../api/article"
 import { getArticles, getArticle } from "@/api/article";
 
@@ -16,8 +17,15 @@ const {posts} = getArticles();
             <PostList :posts="posts"/>
         </div>
         <div class="right">
+            <img src="../assets/images/arrow-down.svg">
+            <h1>你好，今天！</h1>
+
+            <h2>你好，明天！</h2>
         </div>
     </div>
+
+    <NavFoot></NavFoot>
+
 </template>
 
 <style scoped>
@@ -28,12 +36,16 @@ const {posts} = getArticles();
     animation: fadeInUp 1s;
 }
 .left{
-    background-color: rgb(241, 247, 247);
     width: 75%;
 }
 .right{
-    background-color: rgb(118, 189, 236);
+    /* background-color: rgb(118, 189, 236); */
     width:25%;
     
+}
+
+.right img{
+    
+    border-radius: 50%;
 }
 </style>

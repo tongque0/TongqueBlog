@@ -18,7 +18,6 @@ interface Post {
   is_delete:boolean;
 }
 const { posts }: { posts: Ref<Post[]> } = getArticle(id);
-console.log()
 </script>
 
 <template>
@@ -32,4 +31,6 @@ console.log()
     </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+    
+</style>
