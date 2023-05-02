@@ -32,5 +32,10 @@ const { posts }: { posts: Ref<Post[]> } = getArticle(id);
 </template>
 
 <style scoped>
-    
+    .post-item{
+        margin-top: 10vh;
+        margin-left: 10vw;
+        margin-right: 40vw;
+    }
+
 </style>

@@ -7,6 +7,7 @@ interface Post {
   author_id :string;
   tag:string;
   is_delete:boolean;
+  img:string
 }
 defineProps<{
   posts: Post[];
@@ -15,49 +16,245 @@ defineProps<{
 </script>
 
 <template>
-    <div class="post-list">
-        <div v-for="post in posts" :key="post.id" class="post-item">
-          <img src="http://tongque.xyz/images/1.jpg" alt="">
-          <div class="post-item-text">
-            <routerLink :to="{name:'Detail',params:{id:post.id}}">
-                <h3>{{ post.title }}</h3>
-            </routerLink>
-            <p>{{ post.content.substring(0, 100) + "..." }}</p>
-          </div>
-        </div>
+<div v-for="post in posts" :key="post.id">
+  <div v-if="post.id%2===1" class="post-article-card" >
+    <!-- 缩略图 -->
+    <router-link :to="{name:'Detail',params:{id:post.id}}" class="post-article-thumbail-link">
+    <img src="https://upload.linkstarted.top/articles/f57de79f93c4ac72bbb2647b48390026.jpg" alt="缩略图"
+        class="post-article-thumbnail" />
+    </router-link>
+
+    <!-- 文章信息 -->
+    <div class="post-article-info">
+      <!-- 文章标题 -->
+      <router-link :to="{name:'Detail',params:{id:post.id}}" class="post-article-title">
+        {{ post.title }}
+      </router-link>
+
+      <!-- 其它数据 -->
+      <div class="post-article-meta-data-wrap">
+        <span class="post-article-meta-data">
+         发表于 {{ post.id }}
+        </span>
+        <span class="post-article-meta-data-divider">|</span>
+        <span class="post-article-meta-data">
+         分类 {{ post.id}}
+        </span>
+        <span class="post-article-meta-data-divider">|</span>
+        <!-- <span class="post-article-meta-data" v-if="article.tagDTOList.length === 1">
+          <tags-filled /> {{ article.tagDTOList[0].tagName }}
+        </span>
+        <span class="post-article-meta-data" v-else>
+          <tags-filled /> {{ article.tagDTOList[0].tagName }} ...
+        </span> -->
+      </div>
+
+      <!-- 文章摘要 -->
+      <div class="post-article-summary">
+        {{ post.content.substring(0, 100) + "..."}}
+      </div>
     </div>
+  </div>
+
+  <div v-if="post.id%2===0"  class="post-article-card post-article-card-reversed" >
+    <!-- 缩略图 -->
+    <router-link :to="{name:'Detail',params:{id:post.id}}" class="post-article-thumbail-link post-article-thumbail-link-reversed"><img src="https://upload.linkstarted.top/articles/f57de79f93c4ac72bbb2647b48390026.jpg" alt="缩略图"
+        class="post-article-thumbnail" />
+    </router-link>
+
+    <!-- 文章信息 -->
+    <div class="post-article-info">
+      <!-- 文章标题 -->
+      <router-link :to="{name:'Detail',params:{id:post.id}}" class="post-article-title">
+        {{ post.title }}
+      </router-link>
+
+      <!-- 其它数据 -->
+      <div class="post-article-meta-data-wrap">
+        <span class="post-article-meta-data">
+         发表于 {{ post.id }}
+        </span>
+        <span class="post-article-meta-data-divider">|</span>
+        <span class="post-article-meta-data">
+         分类 {{ post.id}}
+        </span>
+        <span class="post-article-meta-data-divider">|</span>
+        <!-- <span class="post-article-meta-data" v-if="article.tagDTOList.length === 1">
+          <tags-filled /> {{ article.tagDTOList[0].tagName }}
+        </span>
+        <span class="post-article-meta-data" v-else>
+          <tags-filled /> {{ article.tagDTOList[0].tagName }} ...
+        </span> -->
+      </div>
+
+      <!-- 文章摘要 -->
+      <div class="post-article-summary">
+        {{ post.content.substring(0, 100) + "..."}}
+      </div>
+    </div>
+  </div>
+</div>
 </template>
 
 <style scoped>
-.post-list {
-  display: flex;
-  flex-direction: column;
 
-}
-
-.post-item {
+.post-article-card {
   display: flex;
-  margin-bottom: 20px;
-  background-color: aquamarine;
+  margin-top: 15px;
+  justify-content: center;
   align-items: center;
+  color: var(--theme-color);
+  background-color: var(--theme-card-color);
+  border-radius: 8px;
+  box-shadow: 0 3px 8px 6px rgba(7, 17, 27, 0.05);
+
+  @media (min-width: 760px) {
+    height: 240px;
+    flex-direction: row;
+  }
+
+  @media (max-width: 759px) {
+    flex-direction: column;
+    height: 450px;
+  }
 }
 
-.post-item img {
-  width: 280px;
+.post-article-card-reversed {
+  @media (min-width: 760px) {
+    flex-direction: row-reverse;
+
+    .post-article-thumbnail {
+      clip-path: polygon(0 100%, 100% 100%, 100% 0, 20% 0);
+    }
+
+    .post-article-thumbnail:hover {
+      //transform: scale(1.1);
+      box-shadow: 0 16px 32px 0 rgba(48, 55, 66, 0.15);
+      /* 鼠标悬浮时盒子出现的阴影 */
+      transform: translate(10px, 0);
+      /* 鼠标悬浮时盒子上移10px */
+    }
+  }
+
+  @media (max-width: 759px) {
+    flex-direction: column;
+
+    .post-article-thumbnail {
+      clip-path: polygon(0 100%, 100% 100%, 100% 0, 0 0);
+    }
+  }
 }
 
-.post-item-text {
-  flex: 1;
-  text-align: center;
+.post-article-thumbail-link {
+  @media (min-width: 760px) {
+    border-radius: 8px 0 0 8px;
+    width: 44%;
+  }
+
+  @media (max-width: 759px) {
+    border-radius: 8px 8px 0 0;
+    width: 100%;
+  }
+
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
-.post-item-text h3 {
-  margin-bottom: 10px;
-  color: #000000;
+.post-article-thumbail-link-reversed {
+  @media (min-width: 760px) {
+    border-radius: 0 8px 8px 0;
+  }
+
+  @media (max-width: 759px) {
+    border-radius: 8px 8px 0 0;
+  }
 }
 
-.post-item-text p {
-  margin-bottom: 0;
+.post-article-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.5s ease;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  @media (min-width: 760px) {
+    clip-path: polygon(0 100%, 100% 100%, 80% 0, 0 0);
+  }
+
+  @media (max-width: 759px) {
+    clip-path: polygon(0 100%, 100% 100%, 100% 0, 0 0);
+  }
+
+}
+
+.post-article-thumbnail:hover {
+  transform: scale(1.1);
+  box-shadow: 0 16px 32px 0 rgba(48, 55, 66, 0.15);
+  /* 鼠标悬浮时盒子出现的阴影 */
+  transform: translate(-10px, 0);
+  /* 鼠标悬浮时盒子上移10px */
+}
+
+.post-article-info {
+  @media (min-width: 760px) {
+    width: 57%;
+    padding: 0 40px;
+  }
+
+  @media (max-width: 759px) {
+    width: 100%;
+    padding: 10px;
+  }
+}
+
+.post-article-title {
+  color: var(--theme-color);
+  font-size: 24px;
+  text-decoration: none;
+  transition: color 0.4s;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  line-height: 1.5;
+  -webkit-line-clamp: 2;
+}
+
+.post-article-title:hover {
+  color: #49b1f5;
+}
+
+.post-article-meta-data-wrap {
+  display: flex;
+  margin: 9px 0;
+}
+
+.post-article-meta-data {
+  font-size: 12px;
+  color: var(--theme-color);
+  box-sizing: border-box;
+  line-height: 24px;
+  overflow: hidden;
+  -webkit-line-clamp: 1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+.post-article-meta-data-divider {
+  color: rgb(133, 133, 133);
+  margin: 3px 8px;
+  font-size: 12px;
+}
+
+.post-article-summary {
+  color: var(--text-color);
+  font-size: 14px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  line-height: 2;
+  -webkit-line-clamp: 2;
 }
 
 </style>

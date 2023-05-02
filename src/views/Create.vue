@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { ref } from "vue"
 import {addArticle} from '../api/article'
+import { useRouter } from "vue-router"
 const title = ref("")
 const content = ref("")
 const tags: any = ref([])
 const tag = ref("")
-
+const router = useRouter()
 //添加标签
 const handleKeydown = () => {
     const trimmedTag = tag.value.trim()
@@ -25,8 +26,12 @@ const handleSubmit: any = async () => {
         tags: tags.value,
     }
 
-    post = addArticle(title,content)
-    console.log(post);
+    const data = await addArticle(post.title, post.content,post.tags)
+    //如果发布成功，跳转到首页
+    if(data.data.status===200){
+        alert('发布成功')
+        router.push("/")
+    }
 }
 </script>
 
@@ -41,7 +46,7 @@ const handleSubmit: any = async () => {
             <input type="text" v-model="tag" placeholder="按下回车添加标签" @keydown.enter.prevent="handleKeydown" />
             <!-- 显示标签 -->
             <div v-for="tag in tags" :key="tag" class="pill">{{ tag }}</div>
-            <button>新建</button>
+            <button>发布</button>
         </form>
     </div>
 </template>

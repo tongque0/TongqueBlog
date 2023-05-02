@@ -1,11 +1,23 @@
 <script setup lang="ts">
+import { ref, computed } from 'vue';
 import HomeCover from "../components/HomeCover.vue"
 import PostList from "../components/postlist.vue"
 import NavFoot from "@/components/NavFoot.vue";
-// import getArticles from "../api/article"
+import TagCloud from "../components/TagCloud.vue"
 import { getArticles, getArticle } from "@/api/article";
 
-const {posts} = getArticles();
+const posts = ref(getArticles().posts);;
+const searchTerm = ref('');
+const filteredPosts = computed(() => {
+  if (searchTerm.value === '') {
+    return posts.value;
+  }
+  return posts.value.filter((post: { title: string; }) =>
+    post.title.toLowerCase().includes(searchTerm.value.toLowerCase())
+  );
+});
+const post =filteredPosts;
+
 </script>
 
 <template>
@@ -14,13 +26,12 @@ const {posts} = getArticles();
     //主题内容
     <div class="main">
         <div class="left">
-            <PostList :posts="posts"/>
+            <input type="text"  class="search-input" v-model="searchTerm" placeholder="Search" />
+            <PostList :posts="post"/>
         </div>
         <div class="right">
             <img src="../assets/images/arrow-down.svg">
-            <h1>你好，今天！</h1>
-
-            <h2>你好，明天！</h2>
+            <TagCloud :posts="post"></TagCloud>
         </div>
     </div>
 
@@ -29,6 +40,7 @@ const {posts} = getArticles();
 </template>
 
 <style scoped>
+@import url(../assets/sousuo.css);
 .main {
     display: flex;
     padding: 40px 15% 0;
