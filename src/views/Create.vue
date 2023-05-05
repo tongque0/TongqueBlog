@@ -2,6 +2,7 @@
 import { ref } from "vue"
 import {addArticle} from '../api/article'
 import { useRouter } from "vue-router"
+import Nav from "../components/NavBackground.vue"
 const title = ref("")
 const content = ref("")
 const save = () => {
@@ -43,53 +44,79 @@ const handleSubmit: any = async () => {
 </script>
 
 <template>
+
+    <Nav></Nav>
     <div class="create">
+      <div class="create-left">
         <form @submit.prevent="handleSubmit">
-            <label for="title">标题</label>
-            <input type="text" v-model="title" required />
-            <label for="content">内容</label>
-            <!-- <textarea type="text" v-model="content" required></textarea> -->
-            <mavon-editor :ishljs = "true" v-model="content" ref=md @save="save" @imgAdd="imgAdd" />
-            <!-- <mavon-editor v-model="content" ></mavon-editor> -->
-            <label for="tag">标签:</label>
-            <input type="text" v-model="tag" placeholder="按下回车添加标签" @keydown.enter.prevent="handleKeydown" />
-            <!-- 显示标签 -->
-            <div v-for="tag in tags"  class="pill">{{ tag }}</div>
-            <button>发布</button>
+          <label for="title">标题</label>
+          <input type="text" v-model="title" required />
+          <label for="tag">标签:</label>
+          <input
+            type="text"
+            v-model="tag"
+            placeholder="按下回车添加标签"
+            @keydown.enter.prevent="handleKeydown"
+          />
+          <!-- 显示标签 -->
+          <div v-for="tag in tags" class="pill">{{ tag }}</div>
+          <button>发布</button>
         </form>
+      </div>
+      <div class="create-right">
+        <label for="content">内容</label>
+        <mavon-editor :ishljs="true" v-model="content" ref="md" @save="save" @imgAdd="imgAdd" style="min-height: 70vh; " />
+        
+      </div>
     </div>
-</template>
-
-<style scoped>
-form {
-    max-width: 480px;
-    margin: 0 auto;
+  </template>
+  
+  <style scoped>
+  .create {
+    margin-top: 3vh;
+    display: flex;
+  }
+  
+  .create-left {
+    margin-left: 8vw;
+    flex-basis: 20%;
+    padding-right: 20px;
+    box-sizing: border-box;
+  }
+  
+  .create-right {
+    flex-grow: 1;
+    margin-right: 8vw;
+  }
+  
+  form {
     text-align: left;
-}
-
-input,
-textarea {
+    max-width: 100%;
+  }
+  
+  input,
+  textarea {
     display: block;
     margin: 10px 0;
     width: 100%;
     box-sizing: border-box;
     padding: 10px;
     border: 1px solid #eee;
-}
-
-textarea {
+  }
+  
+  textarea {
     height: 160px;
-}
-
-label {
+  }
+  
+  label {
     display: inline-block;
     margin-top: 30px;
     position: relative;
     font-size: 20px;
     margin-bottom: 10px;
-}
-
-button {
+  }
+  
+  button {
     display: block;
     margin-top: 30px;
     background: #ff8800;
@@ -97,13 +124,13 @@ button {
     border: none;
     padding: 8px 16px;
     font-size: 18px;
-}
-button:active {
-  background-color: #ff6600;
-  transform: translateY(2px);
-}
-
-.pill {
+  }
+  button:active {
+    background-color: #ff6600;
+    transform: translateY(2px);
+  }
+  
+  .pill {
     display: inline-block;
     margin: 10px 10px 0 0;
     color: #444;
@@ -111,5 +138,6 @@ button:active {
     padding: 8px;
     border-radius: 20px;
     font-size: 14px;
-}
-</style>
+  }
+  </style>
+  

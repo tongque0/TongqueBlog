@@ -2,31 +2,35 @@
 <template>
   <header>
     <router-link class="header-title" to="/">
-      
+
       <img class="logo-icon" src="../assets/images/纸飞机.png" alt="logo">
       启梦
     </router-link>
     <div class="header-menu">
       <a @click="" class="header-menu-item">
-       搜索
+        搜索
       </a>
       <router-link to="/" class="header-menu-item">
-         首页
+        首页
       </router-link>
       <router-link to="/chat" class="header-menu-item">
-         Chat
+        Chat
       </router-link>
       <router-link to="/test" class="header-menu-item">
-         test
+        test
       </router-link>
       <router-link to="/vedio" class="header-menu-item">
-         视频
+        视频
       </router-link>
       <router-link to="/create" class="header-menu-item">
         create
       </router-link>
-      <a @click="" class="header-menu-item">
-         登录
+      <div v-if="s" class="blog-avatar">
+        <img src="../assets/images/avatar.png" alt="avatar" />
+        <div class="blog-info">用户名</div>
+      </div>
+      <a v-else @click="" class="header-menu-item">
+        登录
       </a>
     </div>
   </header>
@@ -49,17 +53,18 @@ header {
   --text-hover-color: white;
   animation: fadeUpIn 1s;
 }
+
 .logo-icon {
-    width: 30px;
-    height: 30px;
-    z-index: 10;
-    /* 确保图标位于标题前面 */
+  width: 30px;
+  height: 30px;
+  z-index: 10;
+  /* 确保图标位于标题前面 */
 }
 
 .logo-icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .blog-avatar {
