@@ -16,15 +16,15 @@
       <router-link to="/chat" class="header-menu-item">
          Chat
       </router-link>
-      <router-link to="/" class="header-menu-item">
-         分类
+      <router-link to="/test" class="header-menu-item">
+         test
       </router-link>
       <router-link to="/vedio" class="header-menu-item">
          视频
       </router-link>
-      <!-- <router-link to="/" class="header-menu-item">
-         友链
-      </router-link> -->
+      <router-link to="/create" class="header-menu-item">
+        create
+      </router-link>
       <a @click="" class="header-menu-item">
          登录
       </a>

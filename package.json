@@ -13,6 +13,7 @@
     "@ant-design/icons-vue": "^6.1.0",
     "axios": "^1.4.0",
     "marked": "^4.3.0",
+    "mavon-editor": "^3.0.1",
     "pinia": "^2.0.32",
     "qs": "^6.11.1",
     "vue": "^3.2.47",

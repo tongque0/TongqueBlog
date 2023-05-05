@@ -4,6 +4,13 @@ import {addArticle} from '../api/article'
 import { useRouter } from "vue-router"
 const title = ref("")
 const content = ref("")
+const save = () => {
+  console.log("Save method called");
+};
+const imgAdd=()=>{
+    console.log('imgadd method called')
+}
+
 const tags: any = ref([])
 const tag = ref("")
 const router = useRouter()
@@ -41,11 +48,13 @@ const handleSubmit: any = async () => {
             <label for="title">标题</label>
             <input type="text" v-model="title" required />
             <label for="content">内容</label>
-            <textarea type="text" v-model="content" required></textarea>
+            <!-- <textarea type="text" v-model="content" required></textarea> -->
+            <mavon-editor :ishljs = "true" v-model="content" ref=md @save="save" @imgAdd="imgAdd" />
+            <!-- <mavon-editor v-model="content" ></mavon-editor> -->
             <label for="tag">标签:</label>
             <input type="text" v-model="tag" placeholder="按下回车添加标签" @keydown.enter.prevent="handleKeydown" />
             <!-- 显示标签 -->
-            <div v-for="tag in tags" :key="tag" class="pill">{{ tag }}</div>
+            <div v-for="tag in tags"  class="pill">{{ tag }}</div>
             <button>发布</button>
         </form>
     </div>
