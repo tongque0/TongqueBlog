@@ -1,7 +1,7 @@
 <template>
   <div class="record-info">
     <p>© 2022 - 2023</p>
-    <a href="https://beian.miit.gov.cn/"> 辽ICP备2022011004号-1</a>
+    <a href="beian.miit.gov.cn"> 辽ICP备2022011004号</a>
   </div>
 </template>
 
@@ -15,6 +15,6 @@
   font-size: 14px;
   text-align: center;
   background-color: #2787b1;
-  color: #666;
+  color: #666666;
 }
 </style>

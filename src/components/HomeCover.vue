@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { onMounted,ref } from 'vue';
 const scrollToContent = () => {
     let h = document.getElementsByClassName("cover")[0].scrollHeight;
     window.scrollTo({ top: h, behavior: "smooth" });
@@ -7,28 +7,30 @@ const scrollToContent = () => {
 
 //打字机效果
 const messages = [
-    "君子一眼，便知道一切!",
-    "静以修身，俭以养德!",
-    "非淡泊无以明志，非宁静无以致远!",
-    "天行健，君子以自强不息。；",
-    "地势坤，君子以厚德载物。",
-    "长风破浪会有时，直挂云帆济沧海。"
+  "君子一眼，便知道一切!",
+  "静以修身，俭以养德!",
+  "非淡泊无以明志，非宁静无以致远!",
+  "天行健，君子以自强不息。",
+  "地势坤，君子以厚德载物。",
+  "长风破浪会有时，直挂云帆济沧海。"
 ];
 const message = messages[Math.floor(Math.random() * messages.length)];
 let counter = 0;
 let intervalId: number | undefined;
 
+const demoText = ref("");
+
 const startTyping = () => {
-    intervalId = setInterval(() => {
-        counter++;
-        const typedMessage = message.substring(0, counter);
-        document.getElementById("demo")!.textContent = typedMessage;
-        if (counter === message.length) clearInterval(intervalId);
-    }, 200);
+  intervalId = setInterval(() => {
+    counter++;
+    const typedMessage = message.substring(0, counter);
+    demoText.value = typedMessage;
+    if (counter === message.length) clearInterval(intervalId);
+  }, 200);
 };
 
 onMounted(() => {
-    startTyping();
+  startTyping();
 });
 
 </script>
@@ -41,7 +43,7 @@ onMounted(() => {
                 <!-- <img class="logo-icon" src="../assets/images/纸飞机.png"> //图标 -->
               Tonque Blog
             </h1>
-            <h2 id="demo" class="cover-title1"></h2>
+            <h2 id="demo" class="cover-title1">{{ demoText }}</h2>
             <div class="cover-content">
 
             </div>

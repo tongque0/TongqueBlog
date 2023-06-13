@@ -5,6 +5,7 @@ import Test from '../views/test.vue'
 import Chat from '../views/Chat.vue'
 import Create from '../views/Create.vue'
 import Vedio from '../views/Vedio.vue'
+import Login from '../views/Login.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -13,6 +14,11 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
     },
     {
       path: '/detail/:id',

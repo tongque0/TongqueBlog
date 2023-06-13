@@ -1,11 +1,12 @@
 import {ref} from "vue"
 import axios from "axios"
+import service from "@/utils/auth";
 
 const getArticles =()=>{
     const posts=ref([]);
     const load=async ()=>{
         try{
-            const {data}=await axios.get('http://1.15.136.115:3007/api//getArticles')
+            const {data}=await axios.get('http://1.15.136.115:3007/api/getArticles/')
             // console.log(data)
             posts.value=data
         }catch(error){

@@ -13,4 +13,5 @@ import NavFoot from './components/NavFoot.vue'
 </template>
 
 <style scoped>
+
 </style>

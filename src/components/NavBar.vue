@@ -22,20 +22,42 @@
       <router-link to="/vedio" class="header-menu-item">
         视频
       </router-link>
-      <router-link to="/create" class="header-menu-item">
-        create
+
+      <router-link v-if="pinia.isLogin" to="" class="header-menu-item user-avatar">
+        <img class="avatar-img" src="../assets/images/纸飞机.png" alt="avatar" />
+        <ul class="menus-submenu">
+          <li><a href="#">个人资料</a></li>
+          <router-link to="/create" class="">
+            发布文章
+          </router-link>
+          <li><a href="#" @click="Logout">退出登录</a></li>
+        </ul>
       </router-link>
-      <div v-if="s" class="blog-avatar">
+      <router-link v-else to="/login" class="header-menu-item">
+        登录
+      </router-link>
+      <!-- <div v-if="s" class="blog-avatar">
         <img src="../assets/images/avatar.png" alt="avatar" />
         <div class="blog-info">用户名</div>
       </div>
       <a v-else @click="" class="header-menu-item">
         登录
-      </a>
+      </a> -->
     </div>
   </header>
 </template>
   
+<script setup lang="ts">
+import { LogoutOutlined } from '@ant-design/icons-vue';
+import { userStore } from '../stores/index'
+const pinia = userStore()
+
+const Logout=()=>{
+  localStorage.removeItem('token');
+  pinia.isLogin=false
+}
+</script>
+
 <style scoped>
 header {
   position: absolute;
@@ -260,4 +282,52 @@ li {
     transform: translateY(0);
   }
 }
-</style>
+
+
+
+.user-avatar {
+  position: relative;
+  padding: 0;
+  margin: 0;
+}
+
+.user-avatar .menus-submenu {
+  position: absolute;
+  display: none;
+  top: 100%;
+  right: 0;
+  z-index: 1;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  box-shadow: 0 5px 20px -4px rgba(0, 0, 0, 0.5);
+  background-color: #fff;
+}
+
+.user-avatar:hover .menus-submenu {
+  display: block;
+}
+
+.avatar-img {
+  display: block;
+  margin-top: -1vh;
+  margin-left: 1vw;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.avatar-img:hover {
+  border-color: #80c8f8;
+}
+
+.menus-submenu a {
+  text-align: center;
+  line-height: 2;
+  color: #4c4948 !important;
+  text-shadow: none;
+  display: block;
+  padding: 6
+}</style>
