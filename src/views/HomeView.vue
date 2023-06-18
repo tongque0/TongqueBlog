@@ -29,10 +29,10 @@ const post =filteredPosts;
             <input type="text"  class="search-input" v-model="searchTerm" placeholder="Search" />
             <PostList :posts="post"/>
         </div>
-        <div class="right">
+        <!-- <div class="right">
             <img src="../assets/images/arrow-down.svg">
             <TagCloud :posts="post"></TagCloud>
-        </div>
+        </div> -->
     </div>
 
     <NavFoot></NavFoot>
@@ -48,7 +48,8 @@ const post =filteredPosts;
     animation: fadeInUp 1s;
 }
 .left{
-    width: 75%;
+    /* width: 75%; */
+    width:100%;
 }
 .right{
     /* background-color: rgb(118, 189, 236); */
@@ -57,7 +58,6 @@ const post =filteredPosts;
 }
 
 .right img{
-    
     border-radius: 50%;
 }
 </style>

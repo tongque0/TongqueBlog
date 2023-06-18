@@ -48,7 +48,7 @@ onMounted(() => {
 
             </div>
         </div>
-        <button style="font-size: 30px" class="down" @click="scrollToContent">
+        <button style="" class="down" @click="scrollToContent">
             <img src="../assets/images/arrow-down.png" alt="arrow">
         </button>
 
@@ -99,7 +99,7 @@ onMounted(() => {
 .down {
     position: absolute;
     top: calc(50% + 10vw);
-    left: 50%;
+    left: 48%;
     transform: translate(-50%, -50%);
     cursor: pointer;
     width: 80px;
